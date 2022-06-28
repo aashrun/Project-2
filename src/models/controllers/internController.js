@@ -11,3 +11,4 @@ const createIntern = async function (req,res){
         res.status(500).send({msg : message.error})
     }
 }
+module.exports.createIntern = createIntern

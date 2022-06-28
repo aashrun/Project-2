@@ -11,3 +11,10 @@ const createCollege = async function (req,res){
         res.status(500).send({msg : message.error})
     }
 }
+
+
+
+
+
+
+module.exports.createCollege = createCollege
