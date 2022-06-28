@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/pushpakov/Open-to-Intern-Project-Requirement/issues"
   },
-  "homepage": "https://github.com/pushpakov/Open-to-Intern-Project-Requirement#readme"
+  "homepage": "https://github.com/pushpakov/Open-to-Intern-Project-Requirement#readme",
+  "dependencies": {
+    "mongoose": "^6.4.1"
+  }
 }
