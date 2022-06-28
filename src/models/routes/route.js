@@ -2,20 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 
-const internController = require("/controllers/interController.js")
-const collegeController = require("/controllers/collegeController.js")
+const internController = require("/controllers/interController")
+const collegeController = require("/controllers/collegeController")
 
 
 
 
 
 router.post("/college", collegeController.createCollege)
+
 router.post("/intern", internController.createIntern)
-
-
-
-
-
 
 
 
