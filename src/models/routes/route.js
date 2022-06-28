@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 
-const internController = require("/controllers/interController")
-const collegeController = require("/controllers/collegeController")
+const internController = require("../controllers/interController")
+const collegeController = require("../controllers/collegeController")
 
 
 
