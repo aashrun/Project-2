@@ -1,5 +1,5 @@
-const internModel = require("../models/internModel.js")
-
+const internModel = require("../models/internModel")
+//const emailValidator = require('email-validator')
 
 
 const createIntern = async function (req,res){

@@ -1,4 +1,4 @@
-const collegeModel = require("../models/collegeModel.js")
+const collegeModel = require("../models/collegeModel")
 
 
 
