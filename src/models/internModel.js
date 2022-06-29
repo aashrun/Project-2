@@ -8,7 +8,7 @@ const internSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    emailId: {
+    email: {
         type: String,
         required: true,
         unique: true,
@@ -16,7 +16,7 @@ const internSchema = new mongoose.Schema({
 
     },
     mobile: {
-        type: Number,
+        type: String,
         required: true,
         unique: true,
         trim: true
