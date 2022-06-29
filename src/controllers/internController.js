@@ -38,7 +38,7 @@ const createIntern = async (req, res) => {
             name,
             email,
             mobile,
-            collegeId
+            collegeName
         } = data
 
         // validate it's values
@@ -62,16 +62,18 @@ const createIntern = async (req, res) => {
         if (!isValidMobile(mobile.trim())) {
             return res.status(400).send({ status: false, msg: "mobile number is not valid" })
         }
-        if (!collegeId) {
+        if (!collegeName || !collegeName.trim()) {
             return res.status(400).send({ status: false, msg: "Intern's college name is missing" })
         }
 
 
         // check if college id is exist in our collection OR not
         const inCollegeDb = await collegeModel.findOne({
-            _id: collegeId,
+            name: collegeName,
             isDeleted: false
         })
+
+        
         if (!inCollegeDb) {
             return res.status(400).send({ status: false, msg: "the college where you belong doesn't exist" })
         }
@@ -90,17 +92,18 @@ const createIntern = async (req, res) => {
             return res.status(400).send({status: false, msg: "Mobile already exists"})
         }
 
+
         let insertData = {
             name,
             email,
             mobile,
-            collegeId: inCollegeDb._id
+            collegeId: inCollegeDb._id,
         }
 
 
         // now - create a document in the collection
         const create = await internModel.create(insertData)
-        return res.status(201).send({ status: true, data: create })
+        return res.status(201).send({ status: true, data: create})
     }
 
 
