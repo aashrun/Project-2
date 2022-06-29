@@ -7,7 +7,7 @@ const getCollegeDetails = async (req, res) => {
     try {
 
         // get college name from query params
-        const collegeName = req.query.name
+        const collegeName = req.query.collegeName
         if (!collegeName || collegeName.trim() == "") {
             return res.status(400).send({ status: false, msg: "College name is missing" })
         }
