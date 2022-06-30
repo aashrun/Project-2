@@ -70,7 +70,6 @@ const createIntern = async (req, res) => {
         if (!collegeName || !collegeName.trim()) {
             return res.status(400).send({ status: false, msg: "Intern's college name is missing" })
         }
-        
         email = lower_case(email)
         collegeName = upar_case(collegeName)
 
@@ -88,7 +87,7 @@ const createIntern = async (req, res) => {
 
 
         // check if email address is exist in our collection OR not 
-        let duplicateEmail = await internModel.find({ email: email })
+        let duplicateEmail = await internModel.findOne({ email: email })
         if (duplicateEmail) {
             return res.status(409).send({ status: false, msg: "Email already exists" })
         }
