@@ -16,6 +16,7 @@ const isValidMobile = (number) => {
     return regEx.test(number)
 }
 
+//validate name for upper case abbrivated name
 const upar_case = function(fun){
     return  fun.toUpperCase()
 }
@@ -39,7 +40,7 @@ const createIntern = async (req, res) => {
             collegeName
         } = data
 
-        collegeName = upar_case(collegeName)
+        
 
         // validate it's values
         if (!name || !name.trim()) {
@@ -65,6 +66,8 @@ const createIntern = async (req, res) => {
         if (!collegeName || !collegeName.trim()) {
             return res.status(400).send({ status: false, msg: "Intern's college name is missing" })
         }
+
+        collegeName = upar_case(collegeName)
 
 
         // check if college id exists in our collection OR not
