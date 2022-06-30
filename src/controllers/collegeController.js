@@ -27,7 +27,7 @@ const createCollege = async function (req, res) {
             return res.status(400).send({ status: false, msg: "Name is required" })
         }
 
-        if (!/^([A-Z. ]){1,100}$/.test(name)) {
+        if (!/^([A-Z. ]){1,100}$/.test(name))  {
             return res.status(400).send({ status: false, msg: "Name should contain only alphabetic chacraters and should be UPPER CASE" })
         }
 
