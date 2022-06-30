@@ -46,7 +46,7 @@ const createCollege = async function (req, res) {
             return res.status(400).send({ status: false, msg: "Invalid logo link" })
         }
         data.name = upar_case(name)
-        const collegeExist = await collegeModel.find({ name: name })
+        const collegeExist = await collegeModel.findOne({ name: name })
 
         if (collegeExist) {
             return res.status(409).send({ status: false, msg: "college name already exits" })

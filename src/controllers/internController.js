@@ -70,7 +70,6 @@ const createIntern = async (req, res) => {
         if (!collegeName || !collegeName.trim()) {
             return res.status(400).send({ status: false, msg: "Intern's college name is missing" })
         }
-        
         email = lower_case(email)
         collegeName = upar_case(collegeName)
 
