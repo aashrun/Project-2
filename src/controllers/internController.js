@@ -82,14 +82,14 @@ const createIntern = async (req, res) => {
         // check if email address is exist in our collection OR not 
         let duplicateEmail = await internModel.findOne({ email: email })
         if (duplicateEmail) {
-            return res.status(400).send({ status: false, msg: "Email already exists" })
+            return res.status(409).send({ status: false, msg: "Email already exists" })
         }
 
 
         // check if phone number is exist in our collection OR not
         let duplicateMobile = await internModel.findOne({mobile:mobile})
         if(duplicateMobile){
-            return res.status(400).send({status: false, msg: "Mobile already exists"})
+            return res.status(409).send({status: false, msg: "Mobile already exists"})
         }
 
 
