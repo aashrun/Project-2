@@ -27,8 +27,8 @@ const createCollege = async function (req, res) {
             return res.status(400).send({ status: false, msg: "Name is required" })
         }
 
-        if (!/^([a-zA-Z. ]){1,100}$/.test(name)) {
-            return res.status(400).send({ status: false, msg: "Name should contain only alphabetic chacraters" })
+        if (!/^([A-Z. ]){1,100}$/.test(name)) {
+            return res.status(400).send({ status: false, msg: "Name should contain only alphabetic chacraters and should be UPPER CASE" })
         }
 
         if (!fullName || !fullName.trim()) {
@@ -45,7 +45,7 @@ const createCollege = async function (req, res) {
         if (!url_valid(logoLink)) {
             return res.status(400).send({ status: false, msg: "Invalid logo link" })
         }
-        // data.name = upar_case(name)
+       
         const collegeExist = await collegeModel.findOne({ name: name })
 
         if (collegeExist) {
