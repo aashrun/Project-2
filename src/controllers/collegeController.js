@@ -9,10 +9,6 @@ const url_valid = function (url) {
     return regex.test(url)
 }
 
-const upar_case = function(fun){
-    return  fun.toUpperCase()
-}
-
 
 /*------------------------------------------------CREATE COLLEGE ------------------------------------------------*/
 const createCollege = async function (req, res) {
@@ -23,7 +19,7 @@ const createCollege = async function (req, res) {
 
         let { name, fullName, logoLink } = data
 
-        obj.name = data.name.trim()
+        obj.name = data.name.trim().toUpperCase()
         obj.logoLink = data.logoLink.trim()
         obj.fullName = data.fullName.trim().split(" ").filter(word=>word).join(" ")
         
@@ -34,7 +30,7 @@ const createCollege = async function (req, res) {
             return res.status(400).send({ status: false, msg: "Name is required" })
         }
 
-        if (!/^([A-Z. , ]){1,100}$/.test(name))  {
+        if (!/^([a-zA-Z. , ]){1,100}$/.test(name))  {
             return res.status(400).send({ status: false, msg: "Name should contain only alphabetic chacraters and should be UPPER CASE" })
         }
 
