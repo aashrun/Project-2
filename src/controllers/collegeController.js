@@ -9,7 +9,9 @@ const url_valid = function (url) {
     return regex.test(url)
 }
 
-
+const upar_case = function(fun){
+    return  fun.toUpperCase()
+}
 
 
 /*------------------------------------------------CREATE COLLEGE ------------------------------------------------*/
@@ -17,6 +19,7 @@ const createCollege = async function (req, res) {
     try {
         const data = req.body
         let { name, fullName, logoLink } = data
+        data.name = upar_case(name)
 
         if (Object.keys(data).length == 0) {
             return res.status(400).send({ status: false, msg: "Data is required to add a college" })
@@ -24,9 +27,10 @@ const createCollege = async function (req, res) {
         if (!name || !name.trim()) {
             return res.status(400).send({ status: false, msg: "Name is required" })
         }
+       
 
         if (!/^([a-zA-Z. ]){1,100}$/.test(name)) {
-            return res.status(400).send({ status: false, msg: "name should contain only alphabetic chacraters" })
+            return res.status(400).send({ status: false, msg: "Name should contain only alphabetic chacraters" })
         }
 
         if (!fullName || !fullName.trim()) {
@@ -34,11 +38,11 @@ const createCollege = async function (req, res) {
         }
 
         if (!/^([a-zA-Z. ]){1,100}$/.test(fullName)) {
-            return res.status(400).send({ status: false, msg: "fullname should contain only alphabetic chacraters" })
+            return res.status(400).send({ status: false, msg: "Fullname should contain only alphabetic chacraters" })
         }
 
         if (!logoLink || !logoLink.trim()) {
-            return res.status(400).send({ status: false, msg: "logoLink is required" })
+            return res.status(400).send({ status: false, msg: "LogoLink is required" })
         }
         if (!url_valid(logoLink)) {
             return res.status(400).send({ status: false, msg: "Invalid logo link" })

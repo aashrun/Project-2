@@ -16,7 +16,7 @@ mongoose.connect("mongodb+srv://pushpak:pushpak1819@radoncluster.opqe2.mongodb.n
     .then(() => console.log("MongoDb is connected"))
     .catch(err => console.log(err))
      
-   
+    
 app.use('/', route)
  
 /*------------------------------------------Binding Connecting on port:-------------------------------------------*/
