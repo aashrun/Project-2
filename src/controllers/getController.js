@@ -7,13 +7,15 @@ const getCollegeDetails = async (req, res) => {
     try {
 
         // get college name from query params
-        const collegeName = req.query.collegeName.toUpperCase()
+        let collegeName = req.query.collegeName
 
         if (!collegeName || collegeName.trim() == "") {
-            return res.status(400).send({ status: false, msg: "College name is missing" })
+            return res.status(400).send({ status: false, msg: "PLEASE PROVIDE COLLEGE NAME IN QUERY PARAM" })
         }
+        
+        collegeName = req.query.collegeName.toUpperCase()
 
-        const output = {}
+        const output = {}   
 
         // find college data by using college name
         const collegeData = await collegeModel.findOne({ name: collegeName, isDeleted: false })
