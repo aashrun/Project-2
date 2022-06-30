@@ -2,7 +2,7 @@ const collegeModel = require('../models/collegeModel')
 const internModel = require('../models/internModel')
 
 
-const getCollegeDetails = async (req, res) => {
+const getCollegeDetails = async function (req, res) {
 
     try {
 
