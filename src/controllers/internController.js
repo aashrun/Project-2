@@ -102,7 +102,7 @@ const createIntern = async (req, res) => {
 
 
         // now - create a document in the collection
-        const create = await internModel.create(insertData)
+        const create = await internModel.create(insertData) //response
         return res.status(201).send({ status: true, data: create})
     }
 
