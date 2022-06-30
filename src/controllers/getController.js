@@ -7,7 +7,13 @@ const getCollegeDetails = async (req, res) => {
     try {
 
         // get college name from query params
-        const collegeName = req.query.collegeName
+        const collegeName = req.query.collegeName.toUpperCase()
+         
+        if(!collegeName){
+            collegeName = req.query.collegeName.toLowerCase()
+        }
+
+
         if (!collegeName || collegeName.trim() == "") {
             return res.status(400).send({ status: false, msg: "College name is missing" })
         }
