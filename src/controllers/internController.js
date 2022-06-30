@@ -4,11 +4,6 @@ const mongoose = require('mongoose')
 
 
 /*-------------------------------------------------VALIDATION FUNCTION -------------------------------------------------*/
-// check any Doc _id (valid or not)
-function isValid_Id(_id) {
-    return mongoose.isValidObjectId(_id)
-}
-
 // validate email address 
 const isValidEmail = (email) => {
     let regEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -18,8 +13,11 @@ const isValidEmail = (email) => {
 // validate phone number 
 const isValidMobile = (number) => {
     let regEx = /^(\+\d{1,3}[- ]?)?\d{10}$/
-
     return regEx.test(number)
+}
+
+const upar_case = function(fun){
+    return  fun.toUpperCase()
 }
 
 
@@ -40,6 +38,8 @@ const createIntern = async (req, res) => {
             mobile,
             collegeName
         } = data
+
+        collegeName = upar_case(collegeName)
 
         // validate it's values
         if (!name || !name.trim()) {
@@ -81,15 +81,15 @@ const createIntern = async (req, res) => {
 
         // check if email address is exist in our collection OR not 
         let duplicateEmail = await internModel.findOne({ email: email })
-        if (duplicateEmail.length !== 0) {
-            return res.status(400).send({ status: false, msg: "Email already exists" })
+        if (duplicateEmail) {
+            return res.status(409).send({ status: false, msg: "Email already exists" })
         }
 
 
         // check if phone number is exist in our collection OR not
         let duplicateMobile = await internModel.findOne({mobile:mobile})
-        if(duplicateMobile.length !==0){
-            return res.status(400).send({status: false, msg: "Mobile already exists"})
+        if(duplicateMobile){
+            return res.status(409).send({status: false, msg: "Mobile already exists"})
         }
 
 
