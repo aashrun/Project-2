@@ -5,8 +5,7 @@ const collegeModel = require("../models/collegeModel")
 
 /*-------------------------------------------------VALIDATION FUNCTION -------------------------------------------------*/
 const url_valid = function (url) {
-    let regex = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/ig
-
+    let regex = /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gmi
     return regex.test(url)
 }
 
