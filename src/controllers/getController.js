@@ -8,11 +8,6 @@ const getCollegeDetails = async (req, res) => {
 
         // get college name from query params
         const collegeName = req.query.collegeName.toUpperCase()
-         
-        if(!collegeName){
-            collegeName = req.query.collegeName.toLowerCase()
-        }
-
 
         if (!collegeName || collegeName.trim() == "") {
             return res.status(400).send({ status: false, msg: "College name is missing" })
@@ -34,16 +29,23 @@ const getCollegeDetails = async (req, res) => {
             mobile: 1
         })
 
+        
         output.name = collegeData.name
         output.fullName = collegeData.fullName
         output.logoLink = collegeData.logoLink
         output.interns = internsList
 
+        if (Object.keys(internsList).length == 0) {
+            const msg = "NO INTERN APPLIED FOR THIS COLLEGE YET."
+            internsList.push(msg)
+            return res.status(200).send({ status: true,  data: output })
+        }
+
         return res.status(200).send({ status: true, data: output })
 
     }
     catch (err) {
-        return res.status(500).send({ status: true, data: e.message })
+        return res.status(500).send({ status: true, data: err.message })
     }
 }
 
