@@ -31,7 +31,7 @@ const createIntern = async (req, res) => {
 
         // check data is exist | key exist in data
         if (Object.keys(data).length == 0) {
-            return res.status(400).send({ status: false, msg: "Post body data must be required!" })
+            return res.status(400).send({ status: false, msg: "Post body data is required!" })
         }
 
         let {
@@ -56,7 +56,7 @@ const createIntern = async (req, res) => {
         if (!isValidEmail(email.trim())) {
             return res.status(400).send({ status: false, msg: "enter valid email address" })
         }
-        if (!mobile || !mobile.trim()) {
+        if (!mobile) {
             return res.status(400).send({ status: false, msg: "Intern's mobile number is missing" })
         }
         if (!isValidMobile(mobile.trim())) {
@@ -67,7 +67,7 @@ const createIntern = async (req, res) => {
         }
 
 
-        // check if college id is exist in our collection OR not
+        // check if college id exists in our collection OR not
         const inCollegeDb = await collegeModel.findOne({
             name: collegeName,
             isDeleted: false
@@ -79,14 +79,14 @@ const createIntern = async (req, res) => {
         }
 
 
-        // check if email address is exist in our collection OR not 
+        // check if email address exists in our collection OR not 
         let duplicateEmail = await internModel.find({ email: email })
         if (duplicateEmail.length !== 0) {
             return res.status(400).send({ status: false, msg: "Email already exists" })
         }
 
 
-        // check if phone number is exist in our collection OR not
+        // check if phone number exists in our collection OR not
         let duplicateMobile = await internModel.find({mobile:mobile})
         if(duplicateMobile.length !==0){
             return res.status(400).send({status: false, msg: "Mobile already exists"})

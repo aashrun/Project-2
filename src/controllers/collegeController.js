@@ -43,10 +43,12 @@ const createCollege = async function (req, res) {
         if (!url_valid(logoLink)) {
             return res.status(400).send({ status: false, msg: "Invalid logo link" })
         }
+
+
         const collegeExist = await collegeModel.findOne({ name: name })
 
         if (collegeExist) {
-            return res.status(400).send({ status: false, msg: "college name already exits" })
+            return res.status(400).send({ status: false, msg: "college already exits" })
         }
         let createdCollege = await collegeModel.create(data)
         return res.status(201).send({ status: true, data: createdCollege })
