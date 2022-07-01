@@ -45,12 +45,7 @@ const createCollege = async function (req, res) {
         if (!url_valid(logoLink)) {
             return res.status(400).send({ status: false, msg: "Invalid logo link" })
         }
-<<<<<<< HEAD
-
-
-=======
         data.name = upar_case(name)
->>>>>>> 2b2a9aa9ba3d6a71e1ea6a25dcf1ad4a19635ee0
         const collegeExist = await collegeModel.findOne({ name: name })
 
         if (collegeExist) {
