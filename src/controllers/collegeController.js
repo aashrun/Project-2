@@ -35,7 +35,7 @@ const createCollege = async function (req, res) {
             return res.status(400).send({ status: false, msg: "Full Name is required" })
         }
 
-        if (!/^([a-zA-Z. ]){1,100}$/.test(fullName)) {
+        if (!/^([a-zA-Z. ,]){1,100}$/.test(fullName)) {
             return res.status(400).send({ status: false, msg: "Fullname should contain only alphabetic chacraters" })
         }
 
