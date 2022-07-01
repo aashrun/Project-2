@@ -18,8 +18,6 @@ const collegeSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    
-    
     isDeleted: {
         type: Boolean,
         default: false,

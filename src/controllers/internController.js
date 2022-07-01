@@ -24,7 +24,7 @@ const upar_case = function(fun){
 
 /*------------------------------------CREATE INTERN ------------------------------------------------*/
 
-const createIntern = async (req, res) => {
+const createIntern = async function (req, res){
     try {
         const data = req.body
 
@@ -115,7 +115,6 @@ const createIntern = async (req, res) => {
 
     }
 }
-
 
 
 module.exports.createIntern = createIntern
