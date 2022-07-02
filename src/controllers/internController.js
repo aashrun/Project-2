@@ -100,7 +100,7 @@ const createIntern = async (req, res) => {
         }
 
 
-        let insertData = {
+        let insertData = {                          // making this in response
             name,
             email,
             mobile,
