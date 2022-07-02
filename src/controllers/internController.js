@@ -32,7 +32,7 @@ const createIntern = async function (req, res){
     try {
         const data = req.body
 
-        // check data is exist | key exist in data
+        // check if data exist | key exist in data
         if (Object.keys(data).length == 0) {
             return res.status(400).send({ status: false, msg: "Post body data is required!" })
         }

@@ -9,7 +9,7 @@ const getCollegeDetails = async function (req, res) {
         // get college name from query params
         let collegeName = req.query.collegeName
 
-        if (!collegeName || collegeName.trim() == "") {
+        if (!collegeName || collegeName.trim() == " ") {
             return res.status(400).send({ status: false, msg: "PLEASE PROVIDE COLLEGE NAME IN QUERY PARAM" })
         }
         
