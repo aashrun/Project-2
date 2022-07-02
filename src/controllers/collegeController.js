@@ -9,17 +9,20 @@ const url_valid = function (url) {
     return regex.test(url)
 }
 
-const upar_case = function(fun){
-    return  fun.toUpperCase()
-}
-
 
 /*------------------------------------------------CREATE COLLEGE ------------------------------------------------*/
 const createCollege = async function (req, res) {
     try {
         const data = req.body
+        
+        let obj = {}
+
         let { name, fullName, logoLink } = data
 
+        obj.name = data.name.trim().toUpperCase()
+        obj.logoLink = data.logoLink.trim()
+        obj.fullName = data.fullName.trim().split(" ").filter(word=>word).join(" ")
+        
         if (Object.keys(data).length == 0) {
             return res.status(400).send({ status: false, msg: "Data is required to add a college" })
         }
@@ -27,15 +30,15 @@ const createCollege = async function (req, res) {
             return res.status(400).send({ status: false, msg: "Name is required" })
         }
 
-        if (!/^([A-Z. ]){1,100}$/.test(name)) {
-            return res.status(400).send({ status: false, msg: "Name should contain only alphabetic chacraters and should be UPPER CASE" })
+        if (!/^([a-zA-Z. , ]){1,100}$/.test(name))  {
+            return res.status(400).send({ status: false, msg: "Name should contain only alphabetic chacraters" })
         }
 
         if (!fullName || !fullName.trim()) {
             return res.status(400).send({ status: false, msg: "Full Name is required" })
         }
 
-        if (!/^([a-zA-Z. ]){1,100}$/.test(fullName)) {
+        if (!/^([a-zA-Z. ,]){1,100}$/.test(fullName)) {
             return res.status(400).send({ status: false, msg: "Fullname should contain only alphabetic chacraters" })
         }
 
@@ -51,7 +54,8 @@ const createCollege = async function (req, res) {
         if (collegeExist) {
             return res.status(409).send({ status: false, msg: "college name already exits" })
         }
-        let createdCollege = await collegeModel.create(data)
+
+        let createdCollege = await collegeModel.create(obj)
         return res.status(201).send({ status: true, data: createdCollege })
     }
     catch (err) {      
